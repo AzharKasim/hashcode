@@ -1,0 +1,38 @@
+Node - Intersection
+Edge - Streets
+Objects = Node, Edge, TrafficLight, Cars
+
+class TrafficLight
+{
+public:
+	unsigned 		mID;
+	bool 				isGreen = false;
+	StreetName 	mStreetParent;
+}
+
+class Cars
+{
+public:
+	unsigned 						mID;
+	unsigned 						numOfStreetsToTake
+	Street 							mStartingPoint;
+	std::queue<Street> 	mStreetsToTake
+	
+}
+class Street
+{
+public:
+	unsigned 			mID;
+	std::string 	mStreetName;
+	Intersection 	mBegin;
+	Intersection 	mEnd;
+	TrafficLight 	mTrafficLight;
+}
+
+class Intersection
+{
+public:
+	unsigned 									mID;
+	std::vector<Street> 			mIncomingStreets
+	std::vector<TrafficLight> mListOfTrafficLights
+}
