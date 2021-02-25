@@ -18,17 +18,19 @@ public:
 	unsigned 						mNumOfStreetsToTake
 	unsigned 						mTimeTaken
 	Street 							mStartingPoint;
+	Street							mCurrentStreet;
 	std::queue<Street> 	mStreetsToTake
 }
 class Street
 {
 public:
-	unsigned 			mID;
-	unsigned			mTimeNeededToClear;
-	std::string 	mStreetName;
-	Intersection 	mBegin;
-	Intersection 	mEnd;
-	TrafficLight 	mTrafficLight;
+	unsigned 					mID;
+	unsigned					mTimeNeededToClear;
+	std::string 			mStreetName;
+	std::vector<Cars> mCarList
+	Intersection 			mBegin;
+	Intersection 			mEnd;
+	TrafficLight 			mTrafficLight;
 }
 
 class Intersection
