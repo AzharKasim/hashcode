@@ -1,6 +1,7 @@
 Node - Intersection
 Edge - Streets
 Objects = Node, Edge, TrafficLight, Cars
+Duration - int D // Iteration of program
 
 class TrafficLight
 {
@@ -14,15 +15,16 @@ class Cars
 {
 public:
 	unsigned 						mID;
-	unsigned 						numOfStreetsToTake
+	unsigned 						mNumOfStreetsToTake
+	unsigned 						mTimeTaken
 	Street 							mStartingPoint;
 	std::queue<Street> 	mStreetsToTake
-	
 }
 class Street
 {
 public:
 	unsigned 			mID;
+	unsigned			mTimeNeededToClear;
 	std::string 	mStreetName;
 	Intersection 	mBegin;
 	Intersection 	mEnd;
@@ -33,6 +35,13 @@ class Intersection
 {
 public:
 	unsigned 									mID;
+	bool 											mIsActive;
 	std::vector<Street> 			mIncomingStreets
 	std::vector<TrafficLight> mListOfTrafficLights
+}
+
+class Schedules
+{
+public:
+	unsigned mNumOfIntersections
 }
