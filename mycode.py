@@ -8,11 +8,11 @@ numStreets = firstInput[2]
 numCars = firstInput[3]
 bonusPoints = firstInput[4]
 
-print(simulationDuration)
-print(numIntersection)
-print(numStreets)
-print(numCars)
-print(bonusPoints)
+print("HI: " ,simulationDuration)
+print("HI: " ,numIntersection)
+print("HI: " ,numStreets)
+print("HI: " ,numCars)
+print("HI: " ,bonusPoints)
 
 streetsNamesTotalList = []
 listOfPaths = []
@@ -22,49 +22,46 @@ mapStreetToIntersection = {}
 mapStreetToWeight = {}
 mapPathsStreetToIntersection = []
 
+class Street:
+    def __init__(self, _name, _startpt, _endpt):
+        self.name = _name
+        self.startPt = _startpt
+        self.endPt = _endpt
+        
+streetsObj = []
+
+class Intersection:
+    def __init__(self):
+        self.mID = 0
+        self.mStreetsList = []
+        
+interObjList = []
+    
 for i in range(numStreets):
     eachStreetsName= list(f.readline().split())
-    print(eachStreetsName)
+    print("STREETS: ",eachStreetsName)
     streetsDirection = (eachStreetsName[0], eachStreetsName[1])
     print(streetsDirection)
-    mapStreetToIntersection[eachStreetsName[2]] = streetsDirection
-    mapStreetToWeight[eachStreetsName[2]] = eachStreetsName[3]
-
-print(mapStreetToIntersection)
-print(mapStreetToWeight)
-uniqueCarPathsIntersection = []
-for j in range(numCars):
-    eachCarPath = list(f.readline().split())
-    streetsNamesTotalList.append(eachCarPath)
-    car_paths = eachCarPath.copy()
-    del car_paths[0]
-    #print("S", eachCarPath)
-    #print("A", car_paths) 
-    uniqueCarPaths[j] = car_paths
-
-for a in uniqueCarPaths:
-    print('a', a)
-for k in streetsNamesTotalList:
-    listOfPaths.append(k[0])
-
-listOfPaths = sorted(listOfPaths, reverse=True)
-totalHops = sum(list(map(int,listOfPaths)))
-
-print(listOfPaths)
-print(totalHops)
-firstLineAnswer = str(int(listOfPaths[0])-1)
-
-print('firstLineAns: ' , firstLineAnswer)
-f = open("jam.txt", "w")
-f.write(firstLineAnswer)
-
-carsCompleteCounter = 0
-timeCounter = 0 
-#print(range(len(streetsNamesTotalList)))
-while(carsCompleteCounter != numCars):
-    print('time: ', timeCounter)
-    for carIndex in range(len(streetsNamesTotalList)):
-        nthCar = uniqueCarPaths[carIndex]
-        print('nthCar', nthCar)
-    carsCompleteCounter += 1
-    timeCounter+=1
+    u = int(eachStreetsName[0])
+    v = int(eachStreetsName[1])
+    
+    myStreet = Street(eachStreetsName[2], u, v)
+    streetsObj.append(myStreet)
+    
+for i in range(len(streetsObj)):
+    print(streetsObj[i].name) 
+    print(streetsObj[i].startPt) 
+    print(streetsObj[i].endPt)
+    
+for i in range(numIntersection):
+    myInter = Intersection()
+    myInter.mID = i;
+    for street in streetsObj:
+        if street.startPt == i or street.endPt == i:
+            myInter.mStreetsList.append(street)
+    interObjList.append(myInter)
+    
+for i in range(len(interObjList)):
+    print(interObjList[i].mID)
+    for j in range(len(interObjList[i].mStreetsList)):
+        print(interObjList[i].mStreetsList[j].name)
